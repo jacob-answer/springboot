@@ -1,4 +1,4 @@
-package org.javaboy.vhr.controller.emp;
+package org.javaboy.vhr.controller.pensonnel;
 
 import org.javaboy.vhr.model.*;
 import org.javaboy.vhr.service.*;
@@ -22,7 +22,7 @@ import java.util.List;
  * @时间 2019-10-29 7:41
  */
 @RestController
-@RequestMapping("/employee/basic")
+@RequestMapping("/personnel/ec")
 public class EmpRewardAndPunishmentController {
     @Autowired
     EmployeeService employeeService;
@@ -36,10 +36,13 @@ public class EmpRewardAndPunishmentController {
     PositionService positionService;
     @Autowired
     DepartmentService departmentService;
+    @Autowired
+    EmployeeRewardAndPunishmentService employeeecService;
+
 
     @GetMapping("/")
-    public RespPageBean getEmployeeByPage(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, Employee employee, Date[] beginDateScope) {
-        return employeeService.getEmployeeByPage(page, size, employee,beginDateScope);
+    public RespPageBean getEmployeeecByPage(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size, Employee employee, Date[] beginDateScope) {
+        return employeeecService.getEmployeeecByPage(page, size, employee,beginDateScope);
     }
 
     @PostMapping("/")

@@ -150,42 +150,42 @@
                         width="55">
                 </el-table-column>
                 <el-table-column
-                        prop="name"
+                        prop="eid"
                         fixed
                         align="left"
-                        label="姓名"
+                        label="员工id"
                         width="90">
                 </el-table-column>
                 <el-table-column
-                        prop="workID"
-                        label="工号"
+                        prop="ecdate"
+                        label="奖惩日期"
                         align="left"
-                        width="85">
+                        width="185">
                 </el-table-column>
                 <el-table-column
-                        prop="gender"
-                        label="性别"
+                        prop="ecreason"
+                        label="奖惩原因"
                         align="left"
-                        width="85">
+                        width="185">
                 </el-table-column>
                 <el-table-column
-                        prop="birthday"
+                        prop="ecpoint"
                         width="95"
                         align="left"
-                        label="出生日期">
+                        label="奖惩分数">
                 </el-table-column>
                 <el-table-column
-                        prop="idCard"
+                        prop="ectype"
                         width="150"
                         align="left"
-                        label="身份证号码">
+                        label="奖惩类型">
                 </el-table-column>
                 <el-table-column
-                        prop="wedlock"
-                        width="70"
-                        label="婚姻状况">
+                        prop="remark"
+                        width="170"
+                        label="备注">
                 </el-table-column>
-                <el-table-column
+                <!--<el-table-column
                         prop="nation.name"
                         width="50"
                         label="民族">
@@ -289,10 +289,10 @@
                         <el-tag>{{scope.row.contractTerm}}</el-tag>
                         年
                     </template>
-                </el-table-column>
+                </el-table-column>-->
                 <el-table-column
-                        fixed="right"
                         width="200"
+                        fixed="right"
                         label="操作">
                     <template slot-scope="scope">
                         <el-button @click="showEditEmpView(scope.row)" style="padding: 3px" size="mini">编辑</el-button>
@@ -874,7 +874,7 @@
             },
             initEmps(type) {
                 this.loading = true;
-                let url = '/employee/basic/?page=' + this.page + '&size=' + this.size;
+                let url = '/personnel/ec/?page=' + this.page + '&size=' + this.size;
                 if (type && type == 'advanced') {
                     if (this.searchValue.politicId) {
                         url += '&politicId=' + this.searchValue.politicId;
@@ -904,6 +904,7 @@
                     this.loading = false;
                     if (resp) {
                         this.emps = resp.data;
+                        console.log(resp);
                         this.total = resp.total;
                     }
                 });

@@ -1,10 +1,8 @@
 package org.javaboy.vhr.service;
 
 import org.javaboy.vhr.mapper.EmployeeMapper;
-import org.javaboy.vhr.model.Employee;
-import org.javaboy.vhr.model.MailConstants;
-import org.javaboy.vhr.model.MailSendLog;
-import org.javaboy.vhr.model.RespPageBean;
+import org.javaboy.vhr.mapper.EmployeeecMapper;
+import org.javaboy.vhr.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
@@ -32,6 +30,8 @@ public class EmployeeRewardAndPunishmentService {
     @Autowired
     EmployeeMapper employeeMapper;
     @Autowired
+    EmployeeecMapper employeeecMapper;
+    @Autowired
     RabbitTemplate rabbitTemplate;
     @Autowired
     MailSendLogService mailSendLogService;
@@ -40,12 +40,12 @@ public class EmployeeRewardAndPunishmentService {
     SimpleDateFormat monthFormat = new SimpleDateFormat("MM");
     DecimalFormat decimalFormat = new DecimalFormat("##.00");
 
-    public RespPageBean getEmployeeByPage(Integer page, Integer size, Employee employee, Date[] beginDateScope) {
+    public RespPageBean getEmployeeecByPage(Integer page, Integer size, Employee employee, Date[] beginDateScope) {
         if (page != null && size != null) {
             page = (page - 1) * size;
         }
-        List<Employee> data = employeeMapper.getEmployeeByPage(page, size, employee, beginDateScope);
-        Long total = employeeMapper.getTotal(employee, beginDateScope);
+        List<Employeeec> data = employeeecMapper.getEmployeeecByPage(page, size, employee, beginDateScope);
+        Long total = employeeecMapper.getTotal(employee, beginDateScope);
         RespPageBean bean = new RespPageBean();
         bean.setData(data);
         bean.setTotal(total);
