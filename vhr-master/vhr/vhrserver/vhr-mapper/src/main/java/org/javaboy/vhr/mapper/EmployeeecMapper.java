@@ -15,7 +15,9 @@ public interface EmployeeecMapper {
 
     Long getTotal(@Param("emp") Employee employee,@Param("beginDateScope") Date[] beginDateScope);
 
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKeyec(Integer id);
+
+    Integer maxWorkID();
 
     int insert(Employeeec record);
 

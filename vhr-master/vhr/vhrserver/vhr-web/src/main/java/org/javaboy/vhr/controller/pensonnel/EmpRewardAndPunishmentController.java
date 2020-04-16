@@ -46,8 +46,8 @@ public class EmpRewardAndPunishmentController {
     }
 
     @PostMapping("/")
-    public RespBean addEmp(@RequestBody Employee employee) {
-        if (employeeService.addEmp(employee) == 1) {
+    public RespBean addEmp(@RequestBody Employeeec employeeec) {
+        if (employeeecService.addEmpec(employeeec) == 1) {
             return RespBean.ok("添加成功!");
         }
         return RespBean.error("添加失败!");
@@ -55,15 +55,15 @@ public class EmpRewardAndPunishmentController {
 
     @DeleteMapping("/{id}")
     public RespBean deleteEmpByEid(@PathVariable Integer id) {
-        if (employeeService.deleteEmpByEid(id) == 1) {
+        if (employeeecService.deleteEmpByEidec(id) == 1) {
             return RespBean.ok("删除成功!");
         }
         return RespBean.error("删除失败!");
     }
 
     @PutMapping("/")
-    public RespBean updateEmp(@RequestBody Employee employee) {
-        if (employeeService.updateEmp(employee) == 1) {
+    public RespBean updateEmpec(@RequestBody Employeeec employeeec) {
+        if (employeeecService.updateEmpec(employeeec) == 1) {
             return RespBean.ok("更新成功!");
         }
         return RespBean.error("更新失败!");
@@ -92,7 +92,7 @@ public class EmpRewardAndPunishmentController {
     @GetMapping("/maxWorkID")
     public RespBean maxWorkID() {
         RespBean respBean = RespBean.build().setStatus(200)
-                .setObj(String.format("%08d", employeeService.maxWorkID() + 1));
+                .setObj(String.format("%08d", employeeecService.maxWorkID() + 1));
         return respBean;
     }
 

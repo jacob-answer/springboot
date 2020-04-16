@@ -52,14 +52,10 @@ public class EmployeeRewardAndPunishmentService {
         return bean;
     }
 
-    public Integer addEmp(Employee employee) {
-        Date beginContract = employee.getBeginContract();
-        Date endContract = employee.getEndContract();
-        double month = (Double.parseDouble(yearFormat.format(endContract)) - Double.parseDouble(yearFormat.format(beginContract))) * 12 + (Double.parseDouble(monthFormat.format(endContract)) - Double.parseDouble(monthFormat.format(beginContract)));
-        employee.setContractTerm(Double.parseDouble(decimalFormat.format(month / 12)));
-        int result = employeeMapper.insertSelective(employee);
+    public Integer addEmpec(Employeeec employeeec) {
+        int result = employeeecMapper.insertSelective(employeeec);
         if (result == 1) {
-            Employee emp = employeeMapper.getEmployeeById(employee.getId());
+            Employee emp = employeeMapper.getEmployeeById(employeeec.getId());
             //生成消息的唯一id
             String msgId = UUID.randomUUID().toString();
             MailSendLog mailSendLog = new MailSendLog();
@@ -76,15 +72,15 @@ public class EmployeeRewardAndPunishmentService {
     }
 
     public Integer maxWorkID() {
-        return employeeMapper.maxWorkID();
+        return employeeecMapper.maxWorkID();
     }
 
-    public Integer deleteEmpByEid(Integer id) {
-        return employeeMapper.deleteByPrimaryKey(id);
+    public Integer deleteEmpByEidec(Integer id) {
+        return employeeecMapper.deleteByPrimaryKeyec(id);
     }
 
-    public Integer updateEmp(Employee employee) {
-        return employeeMapper.updateByPrimaryKeySelective(employee);
+    public Integer updateEmpec(Employeeec employeec) {
+        return employeeecMapper.updateByPrimaryKeySelective(employeec);
     }
 
     public Integer addEmps(List<Employee> list) {
